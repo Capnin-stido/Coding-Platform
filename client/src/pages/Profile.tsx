@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { authAPI } from '../services/api';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 interface ProfileData {
   username: string;
@@ -39,6 +40,9 @@ const Profile: React.FC = () => {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteConfirmation, setDeleteConfirmation] = useState('');
+    const navigate = useNavigate();
+  
+  
 
   const fetchProfile = useCallback(async () => {
     try {
@@ -185,6 +189,12 @@ const Profile: React.FC = () => {
       setError('Failed to delete account');
       setSaving(false);
     }
+  };
+
+
+    const handleLogout = async () => {
+    await logout();
+    navigate('/login');
   };
 
   if (loading) {
@@ -384,6 +394,20 @@ const Profile: React.FC = () => {
                 Delete Account
               </button>
             </div>
+
+            <div className="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+              <div>
+                {/* <h3 className="text-lg font-medium text-gray-900">Change Password</h3> */}
+                {/* <p className="text-sm text-gray-600">Update your account password</p> */}
+              </div>
+              <button
+                onClick={handleLogout}
+                className="bg-gray-600 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+              >
+                Logout
+              </button>
+            </div>
+            
           </div>
         </div>
       </div>

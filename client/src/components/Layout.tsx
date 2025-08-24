@@ -23,10 +23,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const handleLogout = async () => {
-    await logout();
-    navigate('/login');
-  };
+  // const handleLogout = async () => {
+  //   await logout();
+  //   navigate('/login');
+  // };
 
   const navigation = [
     { name: 'Dashboard', href: '/', icon: HomeIcon },
@@ -176,16 +176,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   </div>
                   <Link
                     to="/profile"
-                    className="text-gray-400 hover:text-gray-600"
+                    className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-200 text-gray-600 hover:bg-gray-300 hover:text-gray-800"
                   >
                     <UserIcon className="h-6 w-6" />
                   </Link>
-                  <button
+                  {/* <button
                     onClick={handleLogout}
                     className="text-gray-400 hover:text-gray-600"
                   >
                     Logout
-                  </button>
+                  </button> */}
                 </div>
               ) : (
                 <div className="flex items-center gap-x-4">
